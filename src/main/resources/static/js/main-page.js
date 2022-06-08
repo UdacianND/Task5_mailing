@@ -13,7 +13,7 @@ $(document).ready(function (options){
             let messageObj = JSON.parse(message.body);
             console.log(messageObj);
 
-            let messageStr = '<a href="messages/'+messageObj.id+'" class="list-group-item">\n' +
+            let messageStr = '<a href="message/'+messageObj.id+'" class="list-group-item">\n' +
             '                           <span class="name">'+messageObj.senderName+'</span> <span class="" >'+messageObj.title+'</span>\n' +
             '                            <span class="badge">'+messageObj.sentTime+'</span>\n' +
             '                        </a>'
