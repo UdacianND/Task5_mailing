@@ -12,7 +12,8 @@ $(document).ready(function (options){
         stompClient.subscribe('/user/' + $("#username").text() + '/new-message', function (message) {
             let messageObj = JSON.parse(message.body);
             console.log(messageObj);
-            let messageStr = '<a href="messages/"'+messageObj.id+' class="list-group-item">\n' +
+
+            let messageStr = '<a href="messages/'+messageObj.id+'" class="list-group-item">\n' +
             '                           <span class="name">'+messageObj.senderName+'</span> <span class="" >'+messageObj.title+'</span>\n' +
             '                            <span class="badge">'+messageObj.sentTime+'</span>\n' +
             '                        </a>'
