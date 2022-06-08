@@ -23,8 +23,7 @@ $(document).ready(function (options){
     // AUTO COMPLETION
 
     $( function() {
-        let availableTags
-
+        var availableTags
         function getUsernames(){
             let users = $("#tags").val().split(", ");
             let key = users[users.length-1];
@@ -39,8 +38,6 @@ $(document).ready(function (options){
                 availableTags = response
             })
         }
-
-
         function split( val ) {
             return val.split( /,\s*/ );
         }
@@ -48,9 +45,7 @@ $(document).ready(function (options){
             return split( term ).pop();
         }
 
-        $( "#tags" )
-            // don't navigate away from the field on tab when selecting an item
-            .on( "keyup", function( event ) {
+        $("#tags").on( "keyup", function( event ) {
                 getUsernames()
                 if ( event.keyCode === $.ui.keyCode.TAB &&
                     $( this ).autocomplete( "instance" ).menu.active ) {
@@ -60,7 +55,8 @@ $(document).ready(function (options){
             .autocomplete({
                 minLength: 0,
                 source: function( request, response ) {
-
+                    console.log("------------------------------")
+                    console.log(availableTags);
                     // delegate back to autocomplete, but extract the last term
                     response( $.ui.autocomplete.filter(
                         availableTags, extractLast( request.term ) ) );
@@ -70,7 +66,7 @@ $(document).ready(function (options){
                     return false;
                 },
                 select: function( event, ui ) {
-                    let terms = split( this.value );
+                    var terms = split( this.value );
                     // remove the current input
                     terms.pop();
                     // add the selected item
@@ -81,8 +77,6 @@ $(document).ready(function (options){
                     return false;
                 }
             });
-
-
     } );
     
 })
